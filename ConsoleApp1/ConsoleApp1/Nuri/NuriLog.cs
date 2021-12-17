@@ -3,19 +3,19 @@
 
 namespace Simberdeev
 {
-    class EgorLog : LogAbstract, LogInterface
+    class NuriLog : LogAbstract, LogInterface
     {
-        private static EgorLog i = null;
+        private static NuriLog i = null;
 
-        public static EgorLog I()
+        public static NuriLog I()
         {
             if (i == null)
             {
-                i = new EgorLog();
+                i = new NuriLog();
             }
             return i;
         }
-        private EgorLog() { }
+        private NuriLog() { }
 
         List<string> logs = new List<string>();
 

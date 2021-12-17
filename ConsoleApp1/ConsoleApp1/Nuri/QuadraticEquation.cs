@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Simberdeev;
+using System;
 using System.Collections.Generic;
 
 namespace Simberdeev
@@ -7,20 +8,20 @@ namespace Simberdeev
     {
         protected float discriminant(float a, float b, float c)
         {
-            return b * b - 4 * a * c;
+            return (b * b) - (4 * a * c);
         }
 
         public List<float> Solve(float a, float b, float c)
         {
             if (a == 0)
             {
-                return linearEquation(1, 1);
+                return linearEquation(b, c);
             }
 
-            float d = discriminant(1, 1, 1);
+            float d = discriminant(a, b, c);
             if (d < 0)
             {
-                return null;
+                throw new NuriException("Ошибка: уравнение не имеет решений.");
             }
 
             if (d == 0)
@@ -28,9 +29,11 @@ namespace Simberdeev
                 return new List<float> { -b / (2 * a) };
             }
 
+            NuriLog.I().log("У вас получилось квадратное уравнение");
+
             d = (float)Math.Sqrt(d);
 
-            return new List<float> { -b - d / (2 * a), -b + d / (2 * a) };
+            return new List<float> { (-b - d) / (2 * a), (-b + d) / (2 * a) };
         }
     }
 }

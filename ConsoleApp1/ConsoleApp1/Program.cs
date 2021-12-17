@@ -1,37 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using Simberdeev;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        public class A
+        static void Main(string[] args)
         {
+            try
+            {
+                Console.WriteLine("Ввдеите значение аргумента A");
+                float a = float.Parse(Console.ReadLine());
 
-        }
+                Console.WriteLine("Ввдеите значение аргумента B");
+                float b = float.Parse(Console.ReadLine());
 
-        public class B : A
-        {
-            public object a;
-        }
+                Console.WriteLine("Ввдеите значение аргумента C");
+                float c = float.Parse(Console.ReadLine());
 
-        public class C : B
-        {
-            public object b;
-            public object c;
-        }
+                NuriLog.I().log("Вы ввели уравнение " + a + "x^2 + " + b + "x + " + c + " =  0");
 
-        public static void Main(String[] ars)
-        {
-            A a1 = new A();
-            A a2 = new A();
-            A a3 = new A();
-            B b4 = new B();
-            b4.a = a1;
+                QuadraticEquation function = new QuadraticEquation();
+                List<float> mas = function.Solve(a, b, c);
 
-            C c5 = new C();
-            c5.a = a2;
-            c5.b = b4;
-            c5.c = a3;
+                NuriLog.I().log("Корни введенного вами уравнения " + string.Join(" ; ", mas));
+            }
+            catch (Simberdeev.NuriException ex)
+            {
+                NuriLog.I().log(ex.Message);
+            }
+
+            NuriLog.I().write();
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Simberdeev;
+using System;
 using System.Collections.Generic;
 
 namespace Simberdeev
@@ -9,7 +10,7 @@ namespace Simberdeev
         {
             if (a == 0)
             {
-                return null;
+                throw new NuriException("Ошибка: уравнение не существует.");
             }
 
             return new List<float> { -b / a };
