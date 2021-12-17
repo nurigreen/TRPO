@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace ConsoleApp1
+namespace Simberdeev
 {
-    class B : A
+    class QuadraticEquation : LinearEquation, EquationInterface
     {
         protected float discriminant(float a, float b, float c)
         {
             return b * b - 4 * a * c;
         }
 
-        protected float[] quadraticEquation(float a, float b)
+        public List<float> Solve(float a, float b, float c)
         {
             if (a == 0)
             {
@@ -24,15 +25,12 @@ namespace ConsoleApp1
 
             if (d == 0)
             {
-                return new float[] { -b / (2 * a) };
+                return new List<float> { -b / (2 * a) };
             }
 
             d = (float)Math.Sqrt(d);
 
-            float[] array = new float[2];
-            array[1] = (float)(-b - d / (2 * a));
-            array[2] = (float)((-b + d / (2 * a)));
-            return array;
+            return new List<float> { -b - d / (2 * a), -b + d / (2 * a) };
         }
     }
 }
